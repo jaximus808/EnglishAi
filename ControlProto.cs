@@ -8,10 +8,11 @@ public class ControlProto : MonoBehaviour
 
     public SensorAttachor SensorAt;
 
-    [SerializeField] private float speed;
-    [SerializeField] private Rigidbody[] rb;
-    [SerializeField] private float yOffset;
     [SerializeField] private GameObject EditPos;
+    [SerializeField] private Rigidbody[] rb;
+
+    [SerializeField] private float speed;
+    [SerializeField] private float yOffset;
 
     [SerializeField] private GameObject[] Frames;
     [SerializeField] private Vector3[] FramesPos;

@@ -45,28 +45,12 @@ public class ItemPreviewer : MonoBehaviour
             if(Physics.Raycast(transform.position, transform.forward* previewDist, out hit, previewDist, previewLayer))
             {
                 previewOb.SetActive(true);
-                previewOb.transform.position = hit.point;
+
                 previewOb.transform.rotation = Quaternion.FromToRotation(hit.transform.up, hit.normal);
+                previewOb.transform.position = hit.point + previewOb.transform.up * (PrevItData.yScale/2);
 
                 //previewOb.transform.rotation = Quaternion.FromToRotation(hit.transform.forward, hit.normal);
-                RaycastHit hitAt;
-                bool hitaAt = false;
-                Physics.Raycast(transform.position, transform.forward * previewDist, out hitAt, previewDist);
-                Debug.Log(hitAt.transform.gameObject.layer);
-                if (hitAt.transform.gameObject.layer == 7 )
-                {
-                    if(!attachCol)
-                    {
-                        PrevItData.ChangeMat(Green);
-                        attachCol = true;
-                    }
-                    
-                }
-                else if(attachCol)
-                {
-                    attachCol = false;
-                    PrevItData.ChangeMat(Red);
-                }
+                
             }
             else
             {
@@ -93,6 +77,7 @@ public class ItemPreviewer : MonoBehaviour
             PrevItData = previewOb.GetComponent<PreviewItemData>();
             pending = true;
             PrevItData.ChangeMat(Red);
+            PrevItData.SetMats(Green, Red, this);
         }
     }
 }
